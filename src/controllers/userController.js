@@ -12,14 +12,32 @@ class UserController {
                 if (error) {
                     res.status(500).json({ message: "Error inserción" });
                 } else {
-                    let token = jwt.sign(""+doc._id, process.env.NODE_PRIVATE_KEY);
+                    let token = jwt.sign(`${doc._id}`, process.env.NODE_PRIVATE_KEY);
                     res.status(201).json({ token });
                 }
             });
         } else {
             res.status(400).json({ message: "datos incompletos" });
         }
+    }
 
+    login(req, res) {
+        let { email, password } = req.body;
+        User.find({ email, password }, (error, docs) => {
+            if (error) {
+                console.log(error);
+                res.status(500).send();
+            } else {
+                if (docs.length > 0) {
+                    let token = jwt.sign(`${docs[0]._id}`, process.env.NODE_PRIVATE_KEY);
+                    res.status(200).json({ token });
+                } else {
+                    res.status(401).json({ message: "credenciales incorrectas" });
+
+                }
+
+            }
+        })
     }
 }
 

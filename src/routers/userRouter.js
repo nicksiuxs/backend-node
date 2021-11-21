@@ -16,6 +16,7 @@ class UserRouter {
         const userController = new UserController();
         // Crear un usuario
         this.router.post('/users', userController.register);
+        this.router.post('/user/auth', userController.login);
     }
 }
 
