@@ -1,3 +1,7 @@
+const user ="dev";
+const password= "misiontic"
+const database = "db_ecommerce"
+
 module.exports = {
-    db: 'mongodb+srv://dev:misiontic@cluster0.55jns.mongodb.net/db_ecommerce'
+    db: `mongodb+srv://${user}:${password}@cluster0.55jns.mongodb.net/${database}`
 }
