@@ -33,11 +33,22 @@ class UserController {
                     res.status(200).json({ token });
                 } else {
                     res.status(401).json({ message: "credenciales incorrectas" });
-
                 }
-
             }
         })
+    }
+
+    update(req, res) {
+        let authorization = req.headers.authorization;
+        let token = authorization.split(" ")[1];
+        jwt.verify(token, process.env.NODE_PRIVATE_KEY, (error, decode) => {
+            if (error) {
+                console.log(error)
+            } else {
+                console.log(decode)
+            }
+        })
+        res.status(200).json({ message: 'Datos actualizados' })
     }
 }
 

@@ -17,6 +17,7 @@ class UserRouter {
         // Crear un usuario
         this.router.post('/users', userController.register);
         this.router.post('/user/auth', userController.login);
+        this.router.put('/users', userController.update);
     }
 }
 
