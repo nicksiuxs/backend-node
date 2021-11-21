@@ -1,7 +1,11 @@
+// Dependencias
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+
+// Módulos
 const ConnDb = require('./database/connDb');
-const UserRouter = require('./routers/userRouter')
+const UserRouter = require('./routers/userRouter');
 
 class Server {
     constructor() {
