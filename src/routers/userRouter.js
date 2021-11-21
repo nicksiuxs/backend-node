@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { persons } = require('../utils/data')
+const UserController = require('../controllers/userController')
 
 class UserRouter {
 
@@ -11,16 +12,10 @@ class UserRouter {
     }
 
     config() {
-        this.router.get('/users', (req, res) => {
-            console.log(persons)
-            res.status(200).json(persons).send()
-        })
-
-        this.router.post('/users', (req, res) => {
-            let { name, lastname, email } = req.body;
-            console.table({ name, lastname, email });
-            res.status(200).json({ message: "usuario creado" }).send();
-        })
+        // Instancio la clase UserController
+        const userController = new UserController();
+        // Crear un usuario
+        this.router.post('/users', userController.register);
     }
 }
 
