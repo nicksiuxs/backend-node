@@ -1,11 +1,20 @@
 const express = require('express');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const ConnDb = require('./database/connDb');
 const UserRouter = require('./routers/userRouter')
 
 class Server {
     constructor() {
+
+        // Conectamos la base de datos
+        this.connDb = new ConnDb();
         // Crear aplicación de express
         this.app = express();
+        // Llamamos el método de configuración del servidor
+        this.config();
+    }
+
+    config() {
         // Indicar que se procesará datos en formato JSON
         this.app.use(express.json());
         // Indicar el uso de morgan para el monitoreo de las peticiones http

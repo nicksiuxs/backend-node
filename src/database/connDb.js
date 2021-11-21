@@ -7,7 +7,11 @@ class ConnDb {
     }
 
     async connection() {
-        this.conn = await mongoose.connect(db);
+        try {
+            this.conn = await mongoose.connect(db);
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
 
