@@ -15,6 +15,12 @@ class UserRouter {
             console.log(persons)
             res.status(200).json(persons).send()
         })
+
+        this.router.post('/users', (req, res) => {
+            let { name, lastname, email } = req.body;
+            console.table({ name, lastname, email });
+            res.status(200).json({ message: "usuario creado" }).send();
+        })
     }
 }
 
