@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { persons } = require('../utils/data')
 const UserController = require('../controllers/userController')
 
 class UserRouter {
@@ -17,7 +16,6 @@ class UserRouter {
         // Crear un usuario
         this.router.post('/users', userController.register);
         this.router.post('/user/auth', userController.login);
-        this.router.put('/users', userController.update);
     }
 }
 
