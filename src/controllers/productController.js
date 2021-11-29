@@ -12,13 +12,13 @@ class ProductController {
 
     create = (req, res) => {
         // obtener datos del cuerpo de la petición
-        let { name, price } = req.body;
+        let { name, price, url_img } = req.body;
         // Obtener el token de la peticion
         let token = this.tokenController.getToken(req);
         // Decodificar el token para obtener el id del usuario
         let decode = jwt.decode(token, process.env.NODE_PRIVATE_KEY);
 
-        Product.create({ name, price, user_id: decode.id }, (error, doc) => {
+        Product.create({ name, price, url_img, user_id: decode.id }, (error, doc) => {
             if (error) {
                 res.status(500).json({ error });
             } else {
