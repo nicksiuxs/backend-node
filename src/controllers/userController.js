@@ -12,7 +12,7 @@ class UserController {
                 if (error) {
                     res.status(500).json({ message: "Error inserción" });
                 } else {
-                    let token = jwt.sign(`${doc._id}`, process.env.NODE_PRIVATE_KEY);
+                    let token = jwt.sign({ id: doc._id }, process.env.NODE_PRIVATE_KEY);
                     res.status(201).json({ token });
                 }
             });
@@ -29,7 +29,7 @@ class UserController {
                 res.status(500).send();
             } else {
                 if (docs.length > 0) {
-                    let token = jwt.sign(`${docs[0]._id}`, process.env.NODE_PRIVATE_KEY);
+                    let token = jwt.sign({ id: docs[0]._id }, process.env.NODE_PRIVATE_KEY);
                     res.status(200).json({ token });
                 } else {
                     res.status(401).json({ message: "credenciales incorrectas" });
