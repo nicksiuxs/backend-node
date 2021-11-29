@@ -6,6 +6,7 @@ const morgan = require('morgan');
 // Módulos
 const ConnDb = require('./database/connDb');
 const UserRouter = require('./routers/userRouter');
+const ProductRouter = require('./routers/productRouter');
 
 class Server {
     constructor() {
@@ -32,10 +33,14 @@ class Server {
         })
         // Traer las rutas del user router
         let userRouter = new UserRouter();
+        // Traer las rutas del product router
+        let productRouter = new ProductRouter();
         // Añadir la ruta a express
         this.app.use(router);
         // Añadir las rutas del usuario
-        this.app.use(userRouter.router)
+        this.app.use(userRouter.router);
+        // Añadir las rutas del product0
+        this.app.use(productRouter.router);
         // Levantar o poner a escuchar el servidor
         this.app.listen(this.app.get('PORT'), () => {
             console.log("servidor corriento por el puerto " + this.app.get('PORT'))
