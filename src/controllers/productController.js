@@ -26,6 +26,21 @@ class ProductController {
             }
         })
     }
+
+    getByUser = (req, res) => {
+        // Obtener el token de la peticion
+        let token = this.tokenController.getToken(req);
+        // Decodificar el token para obtener el id del usuario
+        let decode = jwt.decode(token, process.env.NODE_PRIVATE_KEY);
+
+        Product.find({ user_id: decode.id }, (error, products) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(200).json({ products })
+            }
+        })
+    }
 }
 
 module.exports = ProductController;

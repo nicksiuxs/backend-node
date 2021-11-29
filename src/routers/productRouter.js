@@ -10,11 +10,13 @@ class ProductRouter {
         this.config()
     }
 
-    config(){
+    config() {
         // Instancio la clase de ProductController
         const productController = new ProductController();
         // Crear un producto
         this.router.post('/product', productController.create);
+        // Obtener los productos por usuario
+        this.router.get('/products', productController.getByUser)
     }
 }
 
