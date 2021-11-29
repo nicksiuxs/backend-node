@@ -17,6 +17,8 @@ class ProductRouter {
         this.router.post('/product', productController.create);
         // Obtener los productos por usuario
         this.router.get('/product', productController.getByUser)
+        // Editar un producto
+        this.router.put('/product', productController.update);
         // Obtener todos los productos
         this.router.get('/products', productController.getAll );
     }

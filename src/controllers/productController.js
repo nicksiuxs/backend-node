@@ -51,6 +51,24 @@ class ProductController {
             }
         })
     }
+
+    update = (req, res) => {
+        // Obtener datos del producto a editar
+        let { id, name, price, img_url } = req.body;
+
+        // Obtener el token de la peticion
+        let token = this.tokenController.getToken(req);
+        // Decodificar el token para obtener el id del usuario
+        let decode = jwt.decode(token, process.env.NODE_PRIVATE_KEY);
+
+        Product.findOneAndUpdate({ _id: id, user_id: decode.id }, { name, price, img_url }, (error, product) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(200).json({ message: "producto actualizado" });
+            }
+        })
+    }
 }
 
 module.exports = ProductController;
