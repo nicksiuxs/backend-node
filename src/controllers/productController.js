@@ -41,6 +41,16 @@ class ProductController {
             }
         })
     }
+
+    getAll = (req, res) => {
+        Product.find((error, products) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(200).json({ products })
+            }
+        })
+    }
 }
 
 module.exports = ProductController;

@@ -16,7 +16,9 @@ class ProductRouter {
         // Crear un producto
         this.router.post('/product', productController.create);
         // Obtener los productos por usuario
-        this.router.get('/products', productController.getByUser)
+        this.router.get('/product', productController.getByUser)
+        // Obtener todos los productos
+        this.router.get('/products', productController.getAll );
     }
 }
 
