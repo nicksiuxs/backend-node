@@ -20,7 +20,9 @@ class ProductRouter {
         // Editar un producto
         this.router.put('/product', productController.update);
         // Obtener todos los productos
-        this.router.get('/products', productController.getAll );
+        this.router.get('/products', productController.getAll);
+        // Eliminar un producto por id
+        this.router.delete('/product', productController.delete);
     }
 }
 

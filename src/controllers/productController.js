@@ -69,6 +69,26 @@ class ProductController {
             }
         })
     }
+
+    delete = (req, res) => {
+        //Obtener id del producto del cuerpo de la petición
+        let { id } = req.body;
+
+        // Obtener el token de la peticion
+        let token = this.tokenController.getToken(req);
+
+        // Decodificar el token para obtener el id del usuario
+        let decode = jwt.decode(token, process.env.NODE_PRIVATE_KEY);
+        // Obtener el user id
+        let user_id = decode.id
+        Product.findOneAndRemove({ _id: id, user_id }, (error, doc) => {
+            if (error) {
+                res.status(500).json({ error });
+            } else {
+                res.status(200).json({ message: 'producto eliminado con éxito' });
+            }
+        })
+    }
 }
 
 module.exports = ProductController;
