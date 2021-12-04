@@ -85,7 +85,11 @@ class ProductController {
             if (error) {
                 res.status(500).json({ error });
             } else {
-                res.status(200).json({ message: 'producto eliminado con éxito' });
+                if(doc){
+                    res.status(200).json({ message: 'producto eliminado con éxito' });
+                }else{
+                    res.status(200).json({message: "no se eliminó ningún producto"});
+                }
             }
         })
     }
