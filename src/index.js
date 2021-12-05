@@ -2,6 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const cors = require('cors');
 
 // Módulos
 const ConnDb = require('./database/connDb');
@@ -23,7 +24,9 @@ class Server {
         // Indicar que se procesará datos en formato JSON
         this.app.use(express.json());
         // Indicar el uso de morgan para el monitoreo de las peticiones http
-        this.app.use(morgan())
+        this.app.use(morgan());
+        // Permitir el uso de CORS ( permitir conexiones de origen cruzado)
+        this.app.use(cors());
         // Configurar/almacenar el puerto donde correrá el servidor
         this.app.set('PORT', process.env.port || 3000);
         // Crear una ruta/end point (api) raiz
