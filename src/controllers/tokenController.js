@@ -13,6 +13,19 @@ class TokenController {
         }
         return token;
     }
+
+    verifyAuth = (req, res, next) => {
+        // Obtener el token
+        let token = this.getToken(req);
+        //Verificar token
+        jwt.verify(token, process.env.NODE_PRIVATE_KEY, (error, decode) => {
+            if(error){
+                res.status(401).json({message:"usuario no autenticado"})
+            }else{
+                next();
+            }
+        });
+    }
 }
 
 module.exports = TokenController;
